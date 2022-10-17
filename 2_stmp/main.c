@@ -6,16 +6,13 @@ void main(int argc, char* argv[])
     while(1)
     {        
         printf("发件人：");
-        get_recv_email(email_send); //1.1获取发送端邮箱， 确定邮箱服务器               
-        ret = get_email_server(email_send, server_send, &port);    //1.2根据邮箱类型确定邮箱stmp服务器地址和端口号
-        
-        if(ret)
+        get_recv_email(email_send); //1.1获取发送端邮箱， 确定邮箱服务器        
+        if( SUCCESS== get_email_server(email_send, server_send, &port))
         {            
             break;
         }
         show_emails(email_send);  //list the emails        
-    }    
-    
+    }       
     
     ret = get_sock_create(&csock, server_send, &port);//1.3创建套接字
     if(ret == FAILED)
